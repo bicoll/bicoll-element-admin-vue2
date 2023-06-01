@@ -1,0 +1,49 @@
+# 编译后的类文件
+*.class
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ
+*.ipr
+*.iml
+*.iws
+.idea/
+
+# 日志文件和目录
+*.log
+log/
+
+# 前端相关
+node_modules/
+dist/ # 打包构建出的dist文件
+# npm/yarn 日志，上面已忽略
+# npm-debug.log
+# npm-error.log
+# yarn-error.log
+# yarn-debug.log
+
+# Maven
+target/
+
+# Gradle
+# build
+.gradle
+
+# out
+**/out/
+
+# Mac电脑生成的元数据文件
+.DS_Store
+
+# 其它
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+*.pid
+*.orig
+temp/
