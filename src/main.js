@@ -9,12 +9,38 @@ import '@/router/config'// 路由配置必须在路由对象创建之后再引�
 import store from './store' //
 import 'virtual:svg-icons-register'// svg-icons插件
 import 'virtual:uno.css'// uno预设
-
-console.table(import.meta.env)
-
+// import path from "path";
+//
+// console.log(path.resolve('12','32'))
 const app = new Vue({
     render: h => h(App),
     router,
     store
 });
+// const modules = import.meta.glob(["/src/pages/**/index.vue", '/src/layout/index.vue'])
+// router.addRoute({
+//     name: '',
+//     path: '',
+//     component: () => import('@/layout/index.vue'),
+//     children: [
+//         {
+//             name: 'dashboard',
+//             path:'dashboard',
+//             // component: () => import('@/pages/dashboard/index.vue'),
+//             component: modules[`/src/pages/dashboard/index.vue`],
+//             meta: {
+//                 title: 'dashboard',
+//             }
+//         }, {
+//             name: 'user',
+//             path:'/user',
+//             // component: () => import('@/pages/dashboard/index.vue'),
+//             component: modules[`/src/pages/sys/user/index.vue`],
+//             meta: {
+//                 title: 'user',
+//             }
+//         },
+//     ]
+// })
 app.$mount('#app')
+console.log(app)

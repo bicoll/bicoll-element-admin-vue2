@@ -1,12 +1,9 @@
-/**
- * Created by PanJiaChen on 16/11/18.
- */
 
 /**
  * 验证是否为外部链接
  * @param {string} path URL路径
  */
-export function isExternal(path) {
+export function isExternalLink(path) {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
 

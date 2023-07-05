@@ -64,8 +64,11 @@ export default {
                 if (isValid) {
                     this.loading = true;// 开启按钮加载动画
                     this.$store.dispatch('user/login', this.loginForm).then(() => {
-                        this.$router.push({path: this.redirect || '/'})
-                        this.loading = false;
+                        this.$router.push({path: this.redirect || '/dashboard'}).then(() => {
+                            this.loading = false;
+                        }).catch(err => {
+                            this.loading = false;
+                        })
                     }).catch(() => {
                         this.loading = false; // 关闭按钮加载动画
                     })
@@ -95,14 +98,15 @@ export default {
     &:focus, &:focus-within {
       border-color: #409EFF;
 
-      .el-input__inner {
+      .el-input__inner, .svg-icon {
         color: #409EFF;
       }
     }
   }
 
   .el-input {
-      width: 85%;
+    width: 85%;
+
     .el-input__inner {
       height: 48px;
       color: white;

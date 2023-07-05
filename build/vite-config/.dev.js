@@ -5,10 +5,10 @@ import Components from 'unplugin-vue-components/vite'// 组件按需自动导入
 import {
     ElementUiResolver
 } from 'unplugin-vue-components/resolvers' // 为unplugin-vue-components导入Element-ui解析器
-import UnoCSS from 'unocss/vite'
+import UnoCSS from 'unocss/vite'// UnoCSS插件
 import {createSvgIconsPlugin} from "vite-plugin-svg-icons";
 import path from "path";
-// UnoCSS插件
+
 
 export default defineConfig(({command}) => {
     return {

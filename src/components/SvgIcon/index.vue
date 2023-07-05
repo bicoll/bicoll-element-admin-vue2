@@ -3,11 +3,12 @@
          aria-hidden="true"
          :width="$props.size"
          :height="$props.size"
-         style="fill: currentColor;display: inline-block;overflow: hidden">
-        <use :xlink:href="iconId" style="fill: currentColor"/>
+         style="display: inline-block;overflow: hidden">
+        <use :xlink:href="iconId" style="fill: currentColor;width: 100%;height: 100%"/>
     </svg>
 </template>
 <script>
+/* style="fill: currentColor;display: inline-block;overflow: hidden">*/
 export default {
     name: 'SvgIcon',
     props: {

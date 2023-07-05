@@ -13,11 +13,10 @@ export function login(data) {
   })
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return request({
     url: '/api/user/info',
     method: 'get',
-    params: { token }
   })
 }
 
@@ -25,5 +24,12 @@ export function logout() {
   return request({
     url: '/api/user/logout',
     method: 'post'
+  })
+}
+
+export function getMenu() {
+  return request({
+    url: '/api/user/menu',
+    method: 'get'
   })
 }

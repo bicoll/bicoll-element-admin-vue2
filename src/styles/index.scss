@@ -1,10 +1,11 @@
-@import "other";
+@import "sidebar";
+@import "variable.module";
 
 body {
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  //text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 
@@ -22,5 +23,8 @@ html {
 
 #app {
   height: 100%;
+}
 
+a{
+  text-decoration: none;
 }

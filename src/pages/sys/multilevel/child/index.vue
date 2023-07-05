@@ -1,12 +1,10 @@
 <template>
-    <div id="app">
-        <router-view/>
+    <div class="child-wrapper">
+        CHILD
     </div>
 </template>
-
 <script>
 export default {
-    name: 'App'
+    name: 'child'
 }
 </script>
-

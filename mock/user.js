@@ -50,6 +50,7 @@ module.exports = [
         method: 'get',
         response: config => {
             const {token} = config.query
+            console.log(config.query)
             const info = users[token]
 
             // mock error
@@ -74,6 +75,77 @@ module.exports = [
             return {
                 code: 200,
                 data: 'success'
+            }
+        }
+    },
+    // 用户资源菜单
+    {
+        url: '/api/user/menu',
+        method: 'get',
+        response: config => {
+            return {
+                code: 200,
+                data: [{
+                    name: 'dashboard',
+                    path: '/dashboard',
+                    component: 'dashboard',
+                    meta: {
+                        title: '控制面板',
+                        icon: 'dashboard',
+                        openType: 1,
+                    }
+                }, {
+                    name: 'baidu',
+                    path: 'https://www.baidu.com/',
+                    component: '',
+                    meta: {
+                        title: '百度',
+                        icon: 'pwd',
+                        openType: 2,
+                    }
+                }, {
+                    name: 'sys',
+                    path: '/sys',
+                    component: 'layout',
+                    meta: {
+                        title: '系统功能',
+                        icon: 'sys',
+                        openType: 1,
+                    },
+                    children: [
+                        {
+                            name: 'user',
+                            path: 'user',
+                            component: 'sys/user',
+                            meta: {
+                                title: '用户管理',
+                                icon: 'user',
+                                openType: 1,
+                            }
+                        }, {
+                            name: 'multilevel',
+                            path: 'multilevel',
+                            component: 'sys/multilevel',
+                            meta: {
+                                title: '多级',
+                                icon: 'multilevel',
+                                openType: 1,
+                            },
+                            children: [
+                                {
+                                    name: 'child',
+                                    path: 'child',
+                                    component: 'sys/multilevel/child',
+                                    meta: {
+                                        title: '子项',
+                                        icon: 'child',
+                                        openType: 1,
+                                    },
+                                }
+                            ]
+                        }
+                    ]
+                },]
             }
         }
     }

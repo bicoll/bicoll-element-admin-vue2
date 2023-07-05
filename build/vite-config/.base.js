@@ -7,7 +7,8 @@ const viteConfig = defineConfig(config => {
         envDir: './build/env', // 用于指定要加载哪个目录下的环境变量
         resolve: {
             alias: {
-                "@": "/src"
+                "@": "/src",
+                "path":"path-browserify"
             },
         },
     }

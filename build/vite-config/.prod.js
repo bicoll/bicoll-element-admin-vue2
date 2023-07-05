@@ -22,6 +22,7 @@ export default defineConfig({
         }),
         createSvgIconsPlugin({
             // 指定图标文件夹，绝对路径（NODE代码）
+            // iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')]
             iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')]
         })
     ],

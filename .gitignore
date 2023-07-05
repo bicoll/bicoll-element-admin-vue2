@@ -11,6 +11,7 @@
 *.iml
 *.iws
 .idea/
+/jsconfig.json
 
 # 日志文件和目录
 *.log
