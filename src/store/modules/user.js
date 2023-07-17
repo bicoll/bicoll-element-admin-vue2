@@ -3,7 +3,7 @@ import {getToken, setToken, removeToken} from '@/utils/auth'
 import {resetRouter} from '@/router'
 
 /**
- * 获取默认的状态
+ * 获取默认的（初始化）状态
  */
 const getDefaultState = () => {
     return {
@@ -70,29 +70,28 @@ const actions = {
     /**
      * 处理用户登录
      * @param commit
-     * @param LoginForm
+     * @param LoginForm 用户登录表单
      * @returns {Promise<unknown>}
      */
     login({commit}, LoginForm) {
         const {username, pwd} = LoginForm
         return new Promise((resolve, reject) => {
             login({username: username.trim(), pwd}).then(resp => {
+                console.log(resp);
                 commit('SET_TOKEN', resp.token)// 设置Token（状态）
                 setToken(resp.token) // 设置Token（Cookie）
                 resolve(resp)
-            }).catch(error => {
-                reject(error)
+            }).catch(err => {
+                reject(err)
             })
         })
     },
-
     /**
-     * 获取用户状态
+     * 获取用户信息
      */
     getInfo({commit}) {
         return new Promise((resolve, reject) => {
             getInfo().then(resp => {
-
                 if (!resp) {
                     return reject('验证失败，请重新登录')
                 }
@@ -105,14 +104,13 @@ const actions = {
             })
         })
     },
-
     /**
      * 用户注销
      */
     logout({commit}) {
         return new Promise((resolve, reject) => {
             logout().then(() => {
-                removeToken() // must remove  token  first
+                removeToken()
                 resetRouter()
                 commit('RESET_STATE')
                 resolve()
@@ -121,7 +119,6 @@ const actions = {
             })
         })
     },
-
     /**
      * 重置Token
      */
@@ -132,13 +129,15 @@ const actions = {
             resolve()
         })
     },
-
     /**
      * 设置动态路由
      */
     setDynamicRoutes({commit}, dynamicRoutes) {
         commit('SET_DYNAMIC_ROUTES', dynamicRoutes)
     },
+    /**
+     * 设置资源菜单
+     */
     setMenus({commit}, menus) {
         commit('SET_MENUS', menus)
     }

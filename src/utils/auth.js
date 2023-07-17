@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const TOKEN_KEY = 'admin-token' // Token Key
+const TOKEN_KEY = 'authentication' // Token Key
 
 // Token存储与Cookie中
 

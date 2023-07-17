@@ -49,18 +49,14 @@ module.exports = [
         url: '/api/user/info',
         method: 'get',
         response: config => {
-            const {token} = config.query
-            console.log(config.query)
-            const info = users[token]
-
-            // mock error
+            const authentication = config.headers.authentication
+            const info = users[authentication]
             if (!info) {
                 return {
                     code: 50008,
                     message: 'Login failed, unable to get user details.'
                 }
             }
-
             return {
                 code: 200,
                 data: info
@@ -85,67 +81,82 @@ module.exports = [
         response: config => {
             return {
                 code: 200,
-                data: [{
-                    name: 'dashboard',
-                    path: '/dashboard',
-                    component: 'dashboard',
-                    meta: {
-                        title: '控制面板',
-                        icon: 'dashboard',
-                        openType: 1,
-                    }
-                }, {
-                    name: 'baidu',
-                    path: 'https://www.baidu.com/',
-                    component: '',
-                    meta: {
-                        title: '百度',
-                        icon: 'pwd',
-                        openType: 2,
-                    }
-                }, {
-                    name: 'sys',
-                    path: '/sys',
-                    component: 'layout',
-                    meta: {
-                        title: '系统功能',
-                        icon: 'sys',
-                        openType: 1,
-                    },
-                    children: [
-                        {
-                            name: 'user',
-                            path: 'user',
-                            component: 'sys/user',
-                            meta: {
-                                title: '用户管理',
-                                icon: 'user',
-                                openType: 1,
-                            }
-                        }, {
-                            name: 'multilevel',
-                            path: 'multilevel',
-                            component: 'sys/multilevel',
-                            meta: {
-                                title: '多级',
-                                icon: 'multilevel',
-                                openType: 1,
-                            },
-                            children: [
-                                {
-                                    name: 'child',
-                                    path: 'child',
-                                    component: 'sys/multilevel/child',
-                                    meta: {
-                                        title: '子项',
-                                        icon: 'child',
-                                        openType: 1,
-                                    },
-                                }
-                            ]
+                data: [
+                    {
+                        name: 'dashboard',
+                        path: '/dashboard',
+                        component: 'dashboard',
+                        meta: {
+                            title: '控制面板',
+                            icon: 'dashboard',
                         }
-                    ]
-                },]
+                    }, {
+                        name: 'baidu',
+                        path: 'https://www.baidu.com/',
+                        component: '',
+                        meta: {
+                            title: '百度',
+                            icon: 'baidu',
+                        }
+                    }, {
+                        name: 'sys',
+                        path: '/sys',
+                        component: 'layout',
+                        meta: {
+                            title: '系统功能',
+                            icon: 'sys',
+                        },
+                        children: [
+                            {
+                                name: 'user',
+                                path: 'user',
+                                component: 'sys/user',
+                                meta: {
+                                    title: '用户管理',
+                                    icon: 'user',
+                                }
+                            }, {
+                                name: 'multilevel',
+                                path: 'multilevel',
+                                component: 'sys/multilevel',
+                                meta: {
+                                    title: '多级',
+                                    icon: 'multilevel',
+                                },
+                                children: [
+                                    {
+                                        name: 'child',
+                                        path: 'child',
+                                        component: 'sys/multilevel/child',
+                                        meta: {
+                                            title: '子项',
+                                            icon: 'child',
+                                        },
+                                    }
+                                ]
+                            }
+                        ]
+                    }, {
+                        name: 'chart',
+                        path: '/chart',
+                        component: 'layout',
+                        meta: {
+                            title: '图表',
+                            icon: 'chart'
+                        },
+                        children:[
+                            {
+                                name: 'linechart',
+                                path: 'linechart',
+                                component: 'chart/linechart',
+                                meta: {
+                                    title: '折线图',
+                                    icon: 'linechart'
+                                }
+                            }
+                        ]
+                    }
+                ]
             }
         }
     }

@@ -9,13 +9,11 @@ import '@/router/config'// 路由配置必须在路由对象创建之后再引�
 import store from './store' //
 import 'virtual:svg-icons-register'// svg-icons插件
 import 'virtual:uno.css'// uno预设
-// import path from "path";
-//
-// console.log(path.resolve('12','32'))
+Vue.config.productionTip = false
 const app = new Vue({
     render: h => h(App),
     router,
-    store
+    store,
 });
 // const modules = import.meta.glob(["/src/pages/**/index.vue", '/src/layout/index.vue'])
 // router.addRoute({

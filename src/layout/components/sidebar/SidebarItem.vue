@@ -5,25 +5,24 @@
             <app-link v-if="item.meta" :to="resolvePath(item.path)">
                 <el-menu-item :index="resolvePath(item.path)">
                     <svg-icon :icon-name="item.meta.icon" size="16"></svg-icon>
-                    <span class="ml-3">{{ item.meta.title }}</span>
+                    <span class="ml-3 menu-title">{{ item.meta.title }}</span>
                 </el-menu-item>
             </app-link>
         </template>
-        <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
+        <el-submenu v-else :index="resolvePath(item.path)" >
             <template slot="title">
                 <svg-icon :icon-name="item.meta.icon" size="16"></svg-icon>
-                <span class="ml-3">{{ item.meta.title }}</span>
+                <span class="ml-3 menu-title">{{ item.meta.title }}</span>
             </template>
-            <sidebar-item v-for="(child,index) in item.children" :item="child" :base-path="resolvePath(item.path)"
-                          :key="child.path+index"/>
+            <sidebar-item v-for="child in item.children" :item="child" :base-path="resolvePath(item.path)"
+                          :key="child.path"/>
         </el-submenu>
     </div>
 </template>
 <script>
 import AppLink from "./AppLink.vue";
-import {isExternalLink} from '@/utils/validate'
 import svgIcon from "@/components/SvgIcon/index.vue";
-import variables from '@/styles/variable.module.scss'
+import {isExternalLink} from '@/utils/validate'
 
 export default {
     name: 'SidebarItem',
@@ -56,14 +55,15 @@ export default {
             if (this.basePath === '') {
                 return menuPath
             }
-            // 不是一级菜单：basePath会是这样的：/xxxx、/xxx/xxxx
-            // 而menuPath会是这样的：xxxx
+            // 不是一级菜单的菜单：
+            //      basePath会是这样的：/xxxx、/xxx/xxxx
+            //      menuPath会是这样的：xxxx
             // 所以 basePath + ‘/’ + menuPath 即可得到/xxx/xxxx/xxxx……
             return this.basePath.concat('/', menuPath)
         }
     },
     computed: {
-        variables: () => variables
+        // variables: () => variables
     }
 }
 </script>

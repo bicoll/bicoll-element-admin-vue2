@@ -1,0 +1,21 @@
+// CSS常量
+$colorPrimaryNum: 22, 93, 255; // 主颜色（RGB值）
+
+// 侧边栏相关（sidebar）
+$sidebarBg: #282c34; // 背景色
+$sidebarWidth: 210px; // 宽度
+$sidebarCollapseWidth: 64px; // 折叠后宽度
+
+$sidebarItemText: #bfcbd9; // 菜单项文本颜色
+$sidebarItemActiveText: #bfcbd9; // 菜单项文本激活颜色
+$sidebarItemHover: rgb(22, 93, 255,.6); // 菜单项hover背景色
+
+$sidebarSubItemBg: #1f2d3d; // 折叠菜单项背景色
+
+
+
+// 导出CSS变量（导入到JS中，以便在JS中使用CSS变量）
+:export {
+  sidebarWidth: $sidebarWidth;
+  sidebarCollapseWidth: $sidebarCollapseWidth;
+}

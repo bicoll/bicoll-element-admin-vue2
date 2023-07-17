@@ -1,5 +1,4 @@
-@import "sidebar";
-@import "variable.module";
+@import "global.var";// 该文件会使用:root选择器添加全局CSS变量
 
 body {
   height: 100%;
@@ -21,10 +20,6 @@ html {
   box-sizing: inherit;
 }
 
-#app {
-  height: 100%;
-}
-
-a{
+a {
   text-decoration: none;
 }

@@ -1,48 +1,59 @@
-import Cookies from 'js-cookie'
-
+import CookieUtil from 'js-cookie'
+const collapseKey = 'sidebarCollapse'// Cookie中侧边栏折叠状态Key
 const state = {
-  sidebar: {
-    opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
-    withoutAnimation: false
-  },
-  device: 'desktop'
-}
-
-const mutations = {
-  TOGGLE_SIDEBAR: state => {
-    state.sidebar.opened = !state.sidebar.opened
-    state.sidebar.withoutAnimation = false
-    if (state.sidebar.opened) {
-      Cookies.set('sidebarStatus', 1)
-    } else {
-      Cookies.set('sidebarStatus', 0)
-    }
-  },
-  CLOSE_SIDEBAR: (state, withoutAnimation) => {
-    Cookies.set('sidebarStatus', 0)
-    state.sidebar.opened = false
-    state.sidebar.withoutAnimation = withoutAnimation
-  },
-  TOGGLE_DEVICE: (state, device) => {
-    state.device = device
-  }
+    sidebar: {
+        // 侧边栏是否折叠，默认展开
+        collapse:!!Number(CookieUtil.get(collapseKey)),
+        // 是否有动画，默认关闭
+        withAnimation: false
+    },
+    // 设备标识，默认是桌面
+    device: 'desktop'
 }
 
 const actions = {
-  toggleSideBar({ commit }) {
-    commit('TOGGLE_SIDEBAR')
-  },
-  closeSideBar({ commit }, { withoutAnimation }) {
-    commit('CLOSE_SIDEBAR', withoutAnimation)
-  },
-  toggleDevice({ commit }, device) {
-    commit('TOGGLE_DEVICE', device)
-  }
+    // 切换侧边栏折叠状态
+    toggleSideBar({ commit }) {
+        commit('TOGGLE_SIDEBAR')
+    },
+    // 关闭侧边栏
+    closeSideBar({ commit }, { withoutAnimation }) {
+        commit('CLOSE_SIDEBAR', withoutAnimation)
+    },
+    // 切换设备标识
+    toggleDevice({ commit }, device) {
+        commit('TOGGLE_DEVICE', device)
+    }
+}
+
+const mutations = {
+    /**
+     * 切换状态栏折叠状态
+     */
+    TOGGLE_SIDEBAR: state => {
+        // 切换折叠状态
+        state.sidebar.collapse = !state.sidebar.collapse
+        state.sidebar.withAnimation = false
+        // 将切换后的状态存储到Cookie中，方便刷新后恢复状态
+        if (state.sidebar.collapse) {
+            CookieUtil.set(collapseKey, 1)
+        } else {
+            CookieUtil.set(collapseKey, 0)
+        }
+    },
+    CLOSE_SIDEBAR: (state, withoutAnimation) => {
+        CookieUtil.set('sidebarStatus', 0)
+        state.sidebar.collapse = false
+        state.sidebar.withAnimation = withoutAnimation
+    },
+    TOGGLE_DEVICE: (state, device) => {
+        state.device = device
+    }
 }
 
 export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions
+    namespaced: true,
+    state,
+    mutations,
+    actions
 }

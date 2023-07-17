@@ -12,6 +12,16 @@ import path from "path";
 
 export default defineConfig(({command}) => {
     return {
+        // css: {
+        //     // 指定传递给 CSS 预处理器的选项。文件扩展名用作选项的键
+        //     preprocessorOptions: {
+        //         // 全局样式引入
+        //         scss: {
+        //             additionalData: '@use "@/styles/variable.scss" as *;',
+        //             javascriptEnabled: true
+        //         }
+        //     }
+        // },
         plugins: [
             vue(),
             viteMockServe({
