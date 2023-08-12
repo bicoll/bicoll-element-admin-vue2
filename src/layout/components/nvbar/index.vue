@@ -1,33 +1,19 @@
 <template>
-  <!-- <div class="navbar-wrapper px-5 h-60px">
-    <el-row class="h-full flex">
-      <el-col :span="20" class="flex items-center">
-        <collapse-button
-          :collapse="collapse"
-          @click.native="toggleSideBar"
-          line-color="rgba(22, 93, 255, 0.8)"
-        />
-      </el-col>
-      <el-col :span="4"></el-col>
-    </el-row>
-  </div> -->
-  <div id="navbar-wrapper" class="h-60px px-5 flex">
-    <div class="lg:w-1/2 w-1/5 flex items-center">
-      <collapse-button
-        :collapse="collapse"
-        @click.native="toggleSideBar"
-        line-color="rgba(22, 93, 255, 0.8)"
-      />
+  <div id="navbar-wrapper" class="h-60px " px-5 flex>
+    <div w="1/5 lg:1/2" flex items-center>
+      <collapse-button :collapse="collapse" @click.native="toggleSideBar" m="r6" line-color="var(--clr-prm-8)" />
+      <breadcrumb/>
     </div>
-    <div class="lg:w-1/2 w-4/5 flex"></div>
+    <div w="4/5 lg:1/2" flex></div>
   </div>
 </template>
 <script>
-import CollapseButton from "@/layout/components/nvbar/CollapseButton.vue";
+import CollapseButton from "./CollapseButton.vue";
+import Breadcrumb  from './Breadcrumb.vue'
 import { mapActions, mapState } from "vuex";
 export default {
   name: "navbar",
-  components: { CollapseButton },
+  components: { CollapseButton,Breadcrumb },
   computed: {
     ...mapState({
       collapse: (state) => state.app.sidebar.collapse,

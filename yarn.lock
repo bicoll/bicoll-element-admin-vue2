@@ -305,6 +305,11 @@
   resolved "https://registry.npmmirror.com/@unocss/core/-/core-0.51.12.tgz#4090deafb62787a7d46429616a9f3fd03905042a"
   integrity sha512-H8mLy6ZKu9nGZe5jlHhLPIVwh2G3cCDSBGl5aIZJFI1qpmDC+Zb3iueBGigNpX75IzkjaGKZiK1WUWq8TShjtA==
 
+"@unocss/core@0.53.5":
+  version "0.53.5"
+  resolved "https://registry.npmmirror.com/@unocss/core/-/core-0.53.5.tgz#26f987d26843903a689c3b83c024e6e6c9b72f4a"
+  integrity sha512-jBvk4FeUAALAomGfMFFmrXLy01/5DjugdnWgawFAQpSToFTxbMHS7x+pXKu/18cq+YLS8uyl9S0Ywy1jNbfS3Q==
+
 "@unocss/extractor-arbitrary-variants@0.51.12":
   version "0.51.12"
   resolved "https://registry.npmmirror.com/@unocss/extractor-arbitrary-variants/-/extractor-arbitrary-variants-0.51.12.tgz#c810dbe45857b3f5867206dde8540f4b80529cfd"
@@ -371,7 +376,7 @@
     "@unocss/core" "0.51.12"
     "@unocss/preset-mini" "0.51.12"
 
-"@unocss/preset-uno@0.51.12", "@unocss/preset-uno@^0.51.12":
+"@unocss/preset-uno@0.51.12":
   version "0.51.12"
   resolved "https://registry.npmmirror.com/@unocss/preset-uno/-/preset-uno-0.51.12.tgz#5fb8235f8f37c6f21abe77c48d04ad4dd0d6f5e6"
   integrity sha512-5cHjlPz7mUEzNRGhnVWGS4YLMhDBtk1ubQuy2uoYYPx6ecFsoeIYSSIx+loUzAsQ2E5R2JBDp5OFyYRMMkye4Q==
@@ -441,6 +446,13 @@
   integrity sha512-aWEjnyrEDekIHsT1JwaoNpon/UQiwcGX07qEwBCXHKnZrW9JpDCUo8EDl4zY4RIbdHDtgxZ4Ruf8MXNBp6hb1g==
   dependencies:
     "@unocss/core" "0.51.12"
+
+"@unocss/transformer-variant-group@^0.53.5":
+  version "0.53.5"
+  resolved "https://registry.npmmirror.com/@unocss/transformer-variant-group/-/transformer-variant-group-0.53.5.tgz#5d6e6baf27b521608bcf5d6cdc3eebd23547ad7f"
+  integrity sha512-+xDx6JojGkcKwx87sX0y4xM/RuTI0QyPJAKebXUSyuKnctXrTH/p+WNGFIVWiY8suUMnnMesAZpw6O2Oln921w==
+  dependencies:
+    "@unocss/core" "0.53.5"
 
 "@unocss/vite@0.51.12":
   version "0.51.12"

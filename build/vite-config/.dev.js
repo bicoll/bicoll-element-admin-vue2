@@ -17,7 +17,7 @@ export default defineConfig(({command}) => {
         //     preprocessorOptions: {
         //         // 全局样式引入
         //         scss: {
-        //             additionalData: '@use "@/styles/variable.scss" as *;',
+        //             additionalData: '@use "@/style/variable.scss" as *;',
         //             javascriptEnabled: true
         //         }
         //     }
@@ -29,7 +29,9 @@ export default defineConfig(({command}) => {
                 prodEnabled: false,//生产环境下为false，这样就不会被打包到生产包中
                 localEnabled: command === 'serve',// 是否启用Mock
             }),
-            UnoCSS({}),
+            UnoCSS({
+                // mode:'vue-scoped'
+            }),
             Components({
                 resolvers: [
                     ElementUiResolver()

@@ -9,7 +9,7 @@ const tokens = {
 
 // 用户信息（根据Token决定返回的用户信息）
 const users = {
-    'admin-token': {
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2OTE3NTcxNjgsInVzZXJJZCI6IjEifQ.Q1wUsvjVNfliIOFI4rgvP1o89O3O25l6KKn8ZZMIvvU': {
         roles: ['admin'],
         introduction: 'I am a super administrator',
         avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
@@ -28,16 +28,33 @@ module.exports = [
     {
         url: '/api/user/login',
         method: 'post',
-        response: ({body}) => {
-            const {username, pwd} = body
+        response: ({ body }) => {
+            const { username, pwd } = body
             if (username === 'root' && pwd === '123456') {
                 return {
-                    code: 200,
-                    data: {token: 'admin-token'}
+                    "code": 200,
+                    "msg": "操作成功",
+                    "data": {
+                        "id": 1,
+                        "username": "admin",
+                        "nickname": "admin",
+                        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2OTE3NTcxNjgsInVzZXJJZCI6IjEifQ.Q1wUsvjVNfliIOFI4rgvP1o89O3O25l6KKn8ZZMIvvU",
+                        "avater":'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+                        "permissions": [
+                            "1111",
+                            "1111"
+                        ],
+                        "roles": {
+                            "1": "超级管理员"
+                        },
+                        "depts": {
+                            "1": "北京总部"
+                        }
+                    }
                 }
             } else {
                 return {
-                    code: 20000,
+                    code: 320000,
                     data: '用户名或密码错误'
                 }
             }
@@ -144,7 +161,7 @@ module.exports = [
                             title: '图表',
                             icon: 'chart'
                         },
-                        children:[
+                        children: [
                             {
                                 name: 'linechart',
                                 path: 'linechart',

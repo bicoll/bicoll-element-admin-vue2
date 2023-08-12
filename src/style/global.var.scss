@@ -1,0 +1,45 @@
+@import 'constant.module'; // CSS常量
+/**
+ *缩写说明
+ * 1.prm:primary[主要的]
+ * 2.clr:color[颜色]
+ * 3.btn:button[按钮]
+ * 4.bg:background[背景]
+*/
+
+
+:root {
+    // 主颜色
+    --clr-prm-num:#{$colorPrmNum};
+    --clr-prm-1: rgba(var(--clr-prm-num), .1);
+    --clr-prm-2: rgba(var(--clr-prm-num), .2);
+    --clr-prm-3: rgba(var(--clr-prm-num), .3);
+    --clr-prm-4: rgba(var(--clr-prm-num), .4);
+    --clr-prm-5: rgba(var(--clr-prm-num), .5);
+    --clr-prm-6: rgba(var(--clr-prm-num), .6);
+    --clr-prm-7: rgba(var(--clr-prm-num), .7);
+    --clr-prm-8: rgba(var(--clr-prm-num), .8);
+    --clr-prm-9: rgba(var(--clr-prm-num), .9);
+    --clr-prm: rgba(var(--clr-prm-num), 1);
+
+    --clr-white: #fff; // 纯白色
+    --text-prm: var(--clr-white); // 全局文本颜色
+    --btn-prm: var(--clr-prm-10); // 全局按钮颜色
+    --content-prm: var(--clr-white); // 内容区主颜色，默认白色
+    --content-bg-prm: #f6f8f9;
+    ; // 内容区背景主颜色，默认白色
+
+    // 侧边栏
+    --sidebar-bg:#{$sidebarBg}; // 背景色
+    --sidebar-item-text: #{$sidebarItemText}; // 文本色
+    --sidebar-item-hover: #{$sidebarItemHover}; // 菜单项hover背景色
+    --sidebar-width: 210px; // 侧边栏宽度
+    --sidebar-collpse-width: 64px; // 侧边栏折叠宽度
+
+    // 标签视图 TagsView
+    --tagsview-text: #606266; // 标签文字颜色
+    --tagsview-active-text: var(--clr-white); // 标签文字颜色
+    --tagsview-bg: var(--clr-prm-7); // 标签背景色
+    --tagsview-active-bg: var(--clr-prm-7); // 激活标签背景色
+
+}

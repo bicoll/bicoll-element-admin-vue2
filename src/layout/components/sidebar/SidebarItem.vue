@@ -5,7 +5,7 @@
             <app-link v-if="item.meta" :to="resolvePath(item.path)">
                 <el-menu-item :index="resolvePath(item.path)">
                     <svg-icon :icon-name="item.meta.icon" size="16"></svg-icon>
-                    <span class="ml-3 menu-title">{{ item.meta.title }}</span>
+                    <span class="menu-title" ml-3>{{ item.meta.title }}</span>
                 </el-menu-item>
             </app-link>
         </template>
@@ -68,6 +68,3 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-
-</style>

@@ -2,24 +2,17 @@
   <div :class="['sidebar-wrapper', { collapse: collapse }]">
     <el-scrollbar>
       <!--default-active:当前激活的菜单-->
-      <el-menu
-        :collapse="collapse"
-        :default-active="activeMenu"
-        :background-color="`var(--sidebar-bg)`"
-        :text-color="`var(--text-primary)`"
-        :active-text-color="`var(--text-primary)`"
-        :unique-opened="true"
-        :collapse-transition="false"
-        mode="vertical"
-      >
+      <el-menu :collapse="collapse" :default-active="activeMenu" :background-color="`var(--sidebar-bg)`"
+        :text-color="`var(--text-prm)`" :active-text-color="`var(--text-prm)`" :collapse-transition="false"
+        mode="vertical">
         <sidebar-item v-for="menu in menus" :item="menu" :key="menu.path" />
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
 <script>
-import constants from "@/styles/constants.module.scss";
-console.log(constants);
+import constants from "@/style/constant.module.scss";
+// console.log(constants);
 import { mapState } from "vuex";
 import SidebarItem from "./SidebarItem.vue";
 
@@ -73,12 +66,12 @@ export default {
 
   // 折叠状态
   &.collapse {
-    .el-menu[role="menubar"]:deep {
+    .el-menu[role=menubar]:deep {
+
       .el-menu-item,
       .el-submenu__title {
-        .menu-title {
-          opacity: 0 !important;
-          visibility: hidden !important;
+        span {
+          opacity: 0;
         }
       }
 
@@ -93,6 +86,14 @@ export default {
   .el-scrollbar:deep {
     height: 100%;
 
+    // .el-aside {
+    //   transition: width 0.15s;
+    //   -webkit-transition: width 0.15s;
+    //   -moz-transition: width 0.15s;
+    //   -webkit-transition: width 0.15s;
+    //   -o-transition: width 0.15s;
+    // }
+
     .el-scrollbar__wrap {
       overflow-x: hidden !important;
     }
@@ -102,9 +103,16 @@ export default {
       width: inherit !important;
       border-right: none;
 
-      // 折叠菜单
+      // 折叠菜单项
       .el-submenu {
         .el-submenu__title {
+
+          svg.svg-icon,
+          span {
+            color: var(--sidebar-item-text);
+          }
+
+          // 取消hover时默认的背景色
           &:hover {
             background-color: var(--sidebar-bg) !important;
           }
@@ -113,13 +121,11 @@ export default {
 
       // 菜单项
       .el-menu-item {
-        .menu-title {
-          opacity: 1;
-          visibility: visible;
-          transition: all ease-out 0.3s;
-        }
 
-        svg {
+        svg,
+        span {
+          // opacity: 1;
+          transition: all ease-out 0.3s;
           color: var(--sidebar-item-text);
         }
 
@@ -130,13 +136,14 @@ export default {
 
         // 菜单项激活状态：
         &.is-active {
-          background-color: var(--clr-primary-8) !important;
-          > svg {
+          background-color: var(--clr-prm-8) !important;
+
+          >svg,
+          span {
             color: var(--clr-white) !important;
           }
         }
       }
     }
   }
-}
-</style>
+}</style>

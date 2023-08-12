@@ -1,5 +1,5 @@
 <template>
-    <svg v-else :class="[svgClass,'align-middle']"
+    <svg :class="[svgClass,'align-middle']"
          aria-hidden="true"
          :width="$props.size"
          :height="$props.size"

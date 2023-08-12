@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite serve",
     "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@unocss/preset-uno": "^0.51.12",
+    "@unocss/transformer-variant-group": "^0.53.5",
     "@vitejs/plugin-vue2": "^2.2.0",
     "mockjs": "^1.1.0",
     "sass": "^1.62.1",

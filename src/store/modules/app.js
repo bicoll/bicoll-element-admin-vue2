@@ -5,8 +5,10 @@ const state = {
         // 侧边栏是否折叠，默认展开
         collapse:!!Number(CookieUtil.get(collapseKey)),
         // 是否有动画，默认关闭
-        withAnimation: false
+        withAnimation: false,
+        
     },
+    fixedHeader:true,// 固定头部
     // 设备标识，默认是桌面
     device: 'desktop'
 }

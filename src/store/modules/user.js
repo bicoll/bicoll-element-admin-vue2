@@ -1,6 +1,6 @@
-import {login, logout, getInfo, getMenu} from '@/api/user' // API
-import {getToken, setToken, removeToken} from '@/utils/auth'
-import {resetRouter} from '@/router'
+import { login, logout, getInfo, getMenu } from '@/api/user' // API
+import { getToken, setToken, removeToken } from '@/utils/auth'
+import { resetRouter } from '@/router'
 
 /**
  * 获取默认的（初始化）状态
@@ -12,10 +12,78 @@ const getDefaultState = () => {
         avatar: '', // 头像
         dynamicRoutes: [],// 动态路由，根据资源菜单生成
         menus: [],// 用户资源菜单，侧边栏根据资源菜单生成
+        permissiones: []
     }
 }
 const state = getDefaultState() // 默认状态
 
+
+
+const actions = {
+    // 处理用户登录
+    login({ commit }, LoginForm) {
+        const { username, pwd } = LoginForm
+        return new Promise((resolve, reject) => {
+            login({ username: username.trim(), pwd: pwd.trim() }).then(resp => {
+                // debugger
+                commit('SET_TOKEN', resp.token)// 设置Token（状态）
+                const { avater, username, token } = resp
+                setToken(token) // 设置Token（Cookie）
+                commit('SET_USERNAME', username)
+                commit('SET_AVATAR', avater)
+                resolve(resp)
+            }).catch(err => {
+                reject(err)
+            })
+        })
+    },
+    // 获取用户信息
+    getInfo({ commit }) {
+        return new Promise((resolve, reject) => {
+            getInfo().then(resp => {
+                if (!resp) {
+                    return reject('验证失败，请重新登录')
+                }
+                const { name, avatar } = resp
+                commit('SET_USERNAME', name)
+                commit('SET_AVATAR', avatar)
+                resolve(resp)
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+    // 用户注销
+    logout({ commit }) {
+        return new Promise((resolve, reject) => {
+            logout().then(() => {
+                removeToken()
+                resetRouter()
+                commit('RESET_STATE')
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+    // 重置Token
+    resetToken({ commit }) {
+        return new Promise(resolve => {
+            removeToken() // 移除Cookie里的Token
+            commit('RESET_STATE')// 移除Store里的Token
+            resolve()
+        })
+    },
+    // 设置动态路由
+    setDynamicRoutes({ commit }, dynamicRoutes) {
+        commit('SET_DYNAMIC_ROUTES', dynamicRoutes)
+    },
+    // 设置资源菜单
+    setMenus({ commit }, menus) {
+        commit('SET_MENUS', menus)
+    }
+
+}
 const mutations = {
     /**
      * 重置(清空)状态
@@ -66,83 +134,6 @@ const mutations = {
     }
 }
 
-const actions = {
-    /**
-     * 处理用户登录
-     * @param commit
-     * @param LoginForm 用户登录表单
-     * @returns {Promise<unknown>}
-     */
-    login({commit}, LoginForm) {
-        const {username, pwd} = LoginForm
-        return new Promise((resolve, reject) => {
-            login({username: username.trim(), pwd}).then(resp => {
-                console.log(resp);
-                commit('SET_TOKEN', resp.token)// 设置Token（状态）
-                setToken(resp.token) // 设置Token（Cookie）
-                resolve(resp)
-            }).catch(err => {
-                reject(err)
-            })
-        })
-    },
-    /**
-     * 获取用户信息
-     */
-    getInfo({commit}) {
-        return new Promise((resolve, reject) => {
-            getInfo().then(resp => {
-                if (!resp) {
-                    return reject('验证失败，请重新登录')
-                }
-                const {name, avatar} = resp
-                commit('SET_USERNAME', name)
-                commit('SET_AVATAR', avatar)
-                resolve(resp)
-            }).catch(error => {
-                reject(error)
-            })
-        })
-    },
-    /**
-     * 用户注销
-     */
-    logout({commit}) {
-        return new Promise((resolve, reject) => {
-            logout().then(() => {
-                removeToken()
-                resetRouter()
-                commit('RESET_STATE')
-                resolve()
-            }).catch(error => {
-                reject(error)
-            })
-        })
-    },
-    /**
-     * 重置Token
-     */
-    resetToken({commit}) {
-        return new Promise(resolve => {
-            removeToken() // 移除Cookie里的Token
-            commit('RESET_STATE')// 移除Store里的Token
-            resolve()
-        })
-    },
-    /**
-     * 设置动态路由
-     */
-    setDynamicRoutes({commit}, dynamicRoutes) {
-        commit('SET_DYNAMIC_ROUTES', dynamicRoutes)
-    },
-    /**
-     * 设置资源菜单
-     */
-    setMenus({commit}, menus) {
-        commit('SET_MENUS', menus)
-    }
-
-}
 export default {
     namespaced: true,
     state,

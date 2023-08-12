@@ -45,6 +45,7 @@ request.interceptors.response.use(
             // 50012：其他客户端已登录;
             // 50014：令牌已过期;
             if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+                console.log('触发');
                 // ”注销确认“弹窗
                 MessageBox.confirm('您已注销，您可以取消以留在此页面，或重新登录。', '注销确认', {
                     confirmButtonText: '重新登录',

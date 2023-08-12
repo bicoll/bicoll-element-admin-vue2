@@ -12,7 +12,10 @@ export default {
 <style lang="scss" scoped>
 #app {
   height: 100%;
+  background: var(--content-bg-prm);
   //overflow: auto;
+
+  
 
   &::-webkit-scrollbar {
     width: 8px;

@@ -20,6 +20,7 @@ log/
 # 前端相关
 node_modules/
 dist/ # 打包构建出的dist文件
+tailwind.config.js
 # npm/yarn 日志，上面已忽略
 # npm-debug.log
 # npm-error.log

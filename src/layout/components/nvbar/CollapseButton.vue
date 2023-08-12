@@ -28,7 +28,6 @@ export default {
 .collapse-button-wrapper {
   display: inline-block;
   width: 26px;
-  margin-right: 20px;
   cursor: pointer;
   transition: all .3s ease-in-out;
 

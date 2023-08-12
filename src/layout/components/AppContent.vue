@@ -10,5 +10,6 @@ export default {
 </script>
 <style lang="scss">
 #app-content-wrapper {
+  // overflow: hidden;
 }
 </style>

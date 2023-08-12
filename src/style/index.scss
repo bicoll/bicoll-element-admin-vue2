@@ -23,3 +23,8 @@ html {
 a {
   text-decoration: none;
 }
+
+// 修改nprogress进度条颜色。
+#nprogress .bar{
+  background: var(--clr-prm-8) !important;
+}

@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Layout from "@/layout/index.vue";
-
 Vue.use(Router)// 安装路由插件
-// 路由规则
+
+// 通用的路由
 const commonRoutes = [
     {
         path: '/login',
@@ -15,25 +14,21 @@ const commonRoutes = [
 ]
 
 /**
- * 创建路由实例
- * @returns {VueRouter} 路由实例
+ * 创建创建一个新的路由对象
  */
 const createRouter = () => new Router({
     routes: commonRoutes
 });
 
+const router = createRouter();
+
 /**
  * 重置（清空）路由
  */
-export function resetRouter() {
+export const resetRouter = () => {
     const newRouter = createRouter()
-    router.matcher = newRouter.matcher // reset router
+    router.matcher = newRouter.matcher
 }
 
-// export function addRoutes(routes) {
-//
-// }
-
-const router = createRouter();
 export default router;
 
