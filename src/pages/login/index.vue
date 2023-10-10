@@ -5,11 +5,11 @@
       :model="loginForm" :rules="loginFormRules" :inline-message="false">
       <h3 text="center 8" tracking-2 color-white>user-login</h3>
       <el-form-item prop="username">
-        <svg-icon icon-name="user" size="1.2rem" ml-4 color="#889aa4" />
+        <svg-icon icon-name="user" ml-4 color="#889aa4" />
         <el-input v-model="loginForm.username" w="85%"></el-input>
       </el-form-item>
       <el-form-item prop="pwd">
-        <svg-icon icon-name="pwd" size="1.2rem" ml-4 color="#889aa4" />
+        <svg-icon icon-name="pwd" ml-4 color="#889aa4" />
         <el-input v-model="loginForm.pwd"></el-input>
       </el-form-item>
       <el-form-item>

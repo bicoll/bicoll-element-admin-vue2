@@ -26,6 +26,8 @@
           <p class="text-slate-500">You have a new message!</p>
         </div>
       </div>
+
+      <input type="text"/>
     </div>
   </div>
 </template>
@@ -33,7 +35,7 @@
 export default {
   name: "Dashboard",
   computed: {},
-  methods: {},
+  methods: {}
 };
 </script>
 <style lang="scss" scoped>

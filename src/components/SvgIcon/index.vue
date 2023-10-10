@@ -1,8 +1,9 @@
 <template>
     <svg :class="[svgClass,'align-middle']"
          aria-hidden="true"
-         :width="$props.size"
-         :height="$props.size"
+         :width="`${$props.size}px`"
+         :height="`${$props.size}px`"
+         
          style="display: inline-block;overflow: hidden">
         <use :xlink:href="iconId" style="fill: currentColor;width: 100%;height: 100%"/>
     </svg>
@@ -17,8 +18,8 @@ export default {
             require: true
         },
         size: {
-            type: String,
-            default: '1rem'
+            type: Number,
+            default: 16
         }
     },
     computed: {

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
-import { getToken } from '@/utils/auth'
 
 // 创建Axios实例
 const request = axios.create({
@@ -13,9 +12,10 @@ const request = axios.create({
 request.interceptors.request.use(
     // 在请求发出之前的回调
     config => {
-        if (store.getters.token) {
+        const token = store.getters.token
+        if (token && token !== '') {
             // 让每个请求的请求头都携带token，以'X-Token'为key
-            config.headers['authentication'] = getToken()
+            config.headers['authentication'] = token
         }
         return config
     },

@@ -1,7 +1,6 @@
 import router from './index.js'
 import store from '@/store'
 import { Message } from 'element-ui'
-import { getToken } from '@/utils/auth'
 import getPageTitle from '@/utils/getPageTitle'
 import { start, close } from "@/plugins/NProgress";
 import { getMenu } from "@/api/user";
@@ -43,7 +42,7 @@ function cloneDeep(obj) {
 
 
 // 将后台获取到的资源菜单转换为路由表
-const refreshRoutes = function refreshRoutes(menus) {
+const refreshRoutes = function (menus) {
     menus.forEach(item => {
         // 处理一级路由
         if (!item.children || item.children.length === 0) {
@@ -57,25 +56,32 @@ const refreshRoutes = function refreshRoutes(menus) {
         }
         // 将所有component选项进行转换
         transformImport(item)
+        // 将路由添加进路由表
         router.addRoute(item)
     })
-    // console.log(menus)
     return menus
 }
 
 // 路由前置行为，在这里进行路由权限控制
 router.beforeEach(async (to, from, next) => {
     start()// 开启进度条
-    document.title = getPageTitle(to.meta.title)// 设置页面标题（从路由的元数据中获取）
-    const token = getToken()// Token(Cookie中)
+    document.title = getPageTitle(to.meta.title ? to.meta.title : '')// 设置页面标题（从路由的元数据中获取）
+    const token = store.getters.token
     // 1、Token存在
     if (token) {
         // 1.1 Token存在的情况下访问登录页面，直接放行
         if ('/login' === to.path) {
-            next()
+            Message({
+                message: '您已经登录，无需再登录',
+                type: 'error',
+                duration: 2 * 1000
+            })
+            next(false)
+            close()
         } else {
             // 1.2、Token存在的情况下访问其它页面：存在异步路由表直接放行，不存在从后台获取
             const dynamicRoutes = store.getters.dynamicRoutes
+            // debugger
             if (dynamicRoutes && dynamicRoutes.length !== 0) {
                 next()
             } else {
@@ -99,12 +105,23 @@ router.beforeEach(async (to, from, next) => {
         // debugger
         if (whiteList.indexOf(to.path) !== -1) {
             next()
+            return
         } else {
             // 2.2、非白名单内的页面，重定向到登录页面。
             // next({path: `/login?redirect=${to.path}`, replace: true})
             // console.log({path: `/login?redirect=${to.path}`, replace: true})
+            // debugger
+            // if (from.path === '/login') {
+            //     next(false)
+
+            // } else {
+            //     next('/login')
+            // }
             next('/login')
+            return
         }
+
+        close()
     }
 })
 

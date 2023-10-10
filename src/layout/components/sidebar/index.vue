@@ -1,55 +1,62 @@
 <template>
   <div :class="['sidebar-wrapper', { collapse: collapse }]">
     <el-scrollbar>
-      <!--default-active:当前激活的菜单-->
       <el-menu :collapse="collapse" :default-active="activeMenu" :background-color="`var(--sidebar-bg)`"
-        :text-color="`var(--text-prm)`" :active-text-color="`var(--text-prm)`" :collapse-transition="false"
-        mode="vertical">
+        :text-color="`var(--text-prm)`" :active-text-color="`var(--text-prm)`" :collapse-transition="true" mode="vertical"
+        @select="handleSelect">
         <sidebar-item v-for="menu in menus" :item="menu" :key="menu.path" />
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
 <script>
-import constants from "@/style/constant.module.scss";
-// console.log(constants);
 import { mapState } from "vuex";
+import constants from "@/style/constant.module.scss";
 import SidebarItem from "./SidebarItem.vue";
 
 export default {
   name: "SideBar",
-  methods: {},
+  methods: {
+    // 根据折叠状态切换CSS变量（--sidebar-width：侧边栏的宽度）
+    toggleDomWidth(collapse) {
+      if (collapse) {
+        document.body.style.setProperty("--sidebar-width", this.constants.sidebarCollapseWidth);
+      } else {
+        document.body.style.setProperty("--sidebar-width", this.constants.sidebarWidth);
+      }
+    },
+    handleSelect(index, indexPath) {
+      // console.log(index,indexPath);
+    }
+  },
   components: { SidebarItem },
   computed: {
     // CSS常量
     constants: () => constants,
     // 当前激活的菜单index
     activeMenu() {
-      const { meta, path } = this.$route;
-      if (meta.activeMenu) {
-        return meta.activeMenu;
-      }
-      return path;
+      return this.$route.path;
     },
     ...mapState({
-      menus: (state) => state.user.menus, // 资源菜单
-    }),
-    collapse() {
-      let collapse = this.$store.state.app.sidebar.collapse;
-      if (collapse) {
-        document.body.style.setProperty(
-          "--sidebar-width",
-          this.constants.sidebarCollapseWidth
-        );
-      } else {
-        document.body.style.setProperty(
-          "--sidebar-width",
-          this.constants.sidebarWidth
-        );
-      }
-      return collapse;
-    },
+      // 资源菜单
+      menus: (state) => state.user.menus,
+      // 折叠状态
+      collapse: (state) => state.app.sidebar.collapse
+    })
   },
+  watch: {
+    // 监听侧边栏的折叠状态从而动态调整侧边栏宽度
+    collapse: {
+      handler(newVal) {
+        // 通过调整css变量来控制侧边栏宽度
+        if (newVal) {
+          document.body.style.setProperty("--sidebar-width", this.constants.sidebarCollapseWidth);
+        } else {
+          document.body.style.setProperty("--sidebar-width", this.constants.sidebarWidth);
+        }
+      }, immediate: true
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -146,4 +153,5 @@ export default {
       }
     }
   }
-}</style>
+}
+</style>

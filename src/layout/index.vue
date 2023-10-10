@@ -1,6 +1,8 @@
 <template>
   <div id="app-wrapper">
+    <!-- 1、左侧侧边栏 -->
     <sidebar />
+    <!-- 2、右侧内容主体 -->
     <div id="main-wrapper" :class="[{ 'fixed-header': fixedHeader }]">
       <div class="header">
         <navbar />

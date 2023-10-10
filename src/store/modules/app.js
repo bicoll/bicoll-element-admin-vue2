@@ -2,15 +2,15 @@ import CookieUtil from 'js-cookie'
 const collapseKey = 'sidebarCollapse'// Cookie中侧边栏折叠状态Key
 const state = {
     sidebar: {
-        // 侧边栏是否折叠，默认展开
-        collapse:!!Number(CookieUtil.get(collapseKey)),
+        // 侧边栏是否折叠，默认会从Cookie中获取折叠状态
+        collapse: !!Number(CookieUtil.get(collapseKey)),
         // 是否有动画，默认关闭
         withAnimation: false,
-        
     },
-    fixedHeader:true,// 固定头部
+    fixedHeader: true,// 固定头部
     // 设备标识，默认是桌面
-    device: 'desktop'
+    device: 'desktop',
+    mode: 'light'
 }
 
 const actions = {
@@ -25,6 +25,9 @@ const actions = {
     // 切换设备标识
     toggleDevice({ commit }, device) {
         commit('TOGGLE_DEVICE', device)
+    },
+    toggleMode({commit}){
+        commit('TOGGLE_MODE')
     }
 }
 
@@ -50,6 +53,10 @@ const mutations = {
     },
     TOGGLE_DEVICE: (state, device) => {
         state.device = device
+    },
+    // 切换暗黑模式与浅色模式
+    TOGGLE_MODE(state) {
+        state.mode === 'light' ? state.mode = 'dark' : state.mode = 'light'
     }
 }
 

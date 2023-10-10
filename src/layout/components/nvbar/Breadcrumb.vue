@@ -2,7 +2,7 @@
   <el-breadcrumb class="app-breadcrumb"  separator="/">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item) in levelList" :key="item.path" :class="item.path === $route.path?'final':null">
-        <svg-icon :iconName="item.meta.icon" color="#515a6e" align-middle />
+        <svg-icon :iconName="item.meta.icon" color="#515a6e" :size="18" align-middle />
         <span align-middle ml-1 select-none tracking="0.5" >{{ item.meta.title }}</span>
       </el-breadcrumb-item>
     </transition-group>

@@ -39,7 +39,7 @@ module.exports = [
                         "username": "admin",
                         "nickname": "admin",
                         "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2OTE3NTcxNjgsInVzZXJJZCI6IjEifQ.Q1wUsvjVNfliIOFI4rgvP1o89O3O25l6KKn8ZZMIvvU",
-                        "avater":'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+                        "avatar":'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
                         "permissions": [
                             "1111",
                             "1111"
@@ -106,6 +106,7 @@ module.exports = [
                         meta: {
                             title: '控制面板',
                             icon: 'dashboard',
+                            affix:true
                         }
                     }, {
                         name: 'baidu',

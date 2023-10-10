@@ -5,6 +5,12 @@
 </template>
 <script>
 export default {
-    name: 'linechart'
+    name: 'linechart',
+    destroyed(){
+        console.log('销毁');
+    },
+    deactivated(){
+        console.log('缓存');
+    }
 }
 </script>
